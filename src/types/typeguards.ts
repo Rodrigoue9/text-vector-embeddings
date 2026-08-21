@@ -11,8 +11,16 @@ import { Context } from "./context";
  *
  * @param context The context object.
  */
-export function isIssueCommentEvent(context: Context): context is Context<"issue_comment.created" | "issue_comment.deleted" | "issue_comment.edited"> {
-  return context.eventName === "issue_comment.created" || context.eventName === "issue_comment.deleted" || context.eventName === "issue_comment.edited";
+export function isIssueCommentEvent(
+	context: Context,
+): context is Context<
+	"issue_comment.created" | "issue_comment.deleted" | "issue_comment.edited"
+> {
+	return (
+		context.eventName === "issue_comment.created" ||
+		context.eventName === "issue_comment.deleted" ||
+		context.eventName === "issue_comment.edited"
+	);
 }
 
 /**
@@ -22,13 +30,17 @@ export function isIssueCommentEvent(context: Context): context is Context<"issue
  * @param context The context object.
  */
 export function isPullRequestReviewCommentEvent(
-  context: Context
-): context is Context<"pull_request_review_comment.created" | "pull_request_review_comment.edited" | "pull_request_review_comment.deleted"> {
-  return (
-    context.eventName === "pull_request_review_comment.created" ||
-    context.eventName === "pull_request_review_comment.edited" ||
-    context.eventName === "pull_request_review_comment.deleted"
-  );
+	context: Context,
+): context is Context<
+	| "pull_request_review_comment.created"
+	| "pull_request_review_comment.edited"
+	| "pull_request_review_comment.deleted"
+> {
+	return (
+		context.eventName === "pull_request_review_comment.created" ||
+		context.eventName === "pull_request_review_comment.edited" ||
+		context.eventName === "pull_request_review_comment.deleted"
+	);
 }
 
 /**
@@ -36,8 +48,15 @@ export function isPullRequestReviewCommentEvent(
  *
  * @param context The context object.
  */
-export function isPullRequestReviewEvent(context: Context): context is Context<"pull_request_review.submitted" | "pull_request_review.edited"> {
-  return context.eventName === "pull_request_review.submitted" || context.eventName === "pull_request_review.edited";
+export function isPullRequestReviewEvent(
+	context: Context,
+): context is Context<
+	"pull_request_review.submitted" | "pull_request_review.edited"
+> {
+	return (
+		context.eventName === "pull_request_review.submitted" ||
+		context.eventName === "pull_request_review.edited"
+	);
 }
 
 /**
@@ -45,8 +64,13 @@ export function isPullRequestReviewEvent(context: Context): context is Context<"
  *
  * @param context The context object.
  */
-export function isPullRequestEvent(context: Context): context is Context<"pull_request.opened" | "pull_request.edited"> {
-  return context.eventName === "pull_request.opened" || context.eventName === "pull_request.edited";
+export function isPullRequestEvent(
+	context: Context,
+): context is Context<"pull_request.opened" | "pull_request.edited"> {
+	return (
+		context.eventName === "pull_request.opened" ||
+		context.eventName === "pull_request.edited"
+	);
 }
 
 /**
@@ -55,13 +79,19 @@ export function isPullRequestEvent(context: Context): context is Context<"pull_r
  * @param context The context object.
  */
 export function isIssueEvent(
-  context: Context
-): context is Context<"issues.opened" | "issues.edited" | "issues.deleted" | "issues.transferred" | "issues.closed"> {
-  return (
-    context.eventName === "issues.opened" ||
-    context.eventName === "issues.edited" ||
-    context.eventName === "issues.deleted" ||
-    context.eventName === "issues.transferred" ||
-    context.eventName === "issues.closed"
-  );
+	context: Context,
+): context is Context<
+	| "issues.opened"
+	| "issues.edited"
+	| "issues.deleted"
+	| "issues.transferred"
+	| "issues.closed"
+> {
+	return (
+		context.eventName === "issues.opened" ||
+		context.eventName === "issues.edited" ||
+		context.eventName === "issues.deleted" ||
+		context.eventName === "issues.transferred" ||
+		context.eventName === "issues.closed"
+	);
 }

@@ -10,23 +10,24 @@ import { PluginSettings } from "./plugin-input";
  * ubiquity:listeners: ["issue_comment.created", ...]
  */
 export type SupportedEvents =
-  | "issue_comment.created"
-  | "issue_comment.deleted"
-  | "issue_comment.edited"
-  | "pull_request_review_comment.created"
-  | "pull_request_review_comment.edited"
-  | "pull_request_review_comment.deleted"
-  | "pull_request_review.submitted"
-  | "pull_request_review.edited"
-  | "pull_request.opened"
-  | "pull_request.edited"
-  | "issues.opened"
-  | "issues.edited"
-  | "issues.deleted"
-  | "issues.labeled"
-  | "issues.transferred"
-  | "issues.closed";
+	| "issue_comment.created"
+	| "issue_comment.deleted"
+	| "issue_comment.edited"
+	| "pull_request_review_comment.created"
+	| "pull_request_review_comment.edited"
+	| "pull_request_review_comment.deleted"
+	| "pull_request_review.submitted"
+	| "pull_request_review.edited"
+	| "pull_request.opened"
+	| "pull_request.edited"
+	| "issues.opened"
+	| "issues.edited"
+	| "issues.deleted"
+	| "issues.labeled"
+	| "issues.transferred"
+	| "issues.closed";
 
-export type Context<TEvents extends SupportedEvents = SupportedEvents> = PluginContext<PluginSettings, Env, Command, TEvents> & {
-  adapters: Awaited<ReturnType<typeof createAdapters>>;
-};
+export type Context<TEvents extends SupportedEvents = SupportedEvents> =
+	PluginContext<PluginSettings, Env, Command, TEvents> & {
+		adapters: Awaited<ReturnType<typeof createAdapters>>;
+	};

@@ -10,37 +10,41 @@ import { Embedding as VoyageEmbedding } from "./voyage/helpers/embedding";
 import { SuperVoyage } from "./voyage/helpers/voyage";
 
 type AdapterSet = {
-  supabase: {
-    comment: Comment;
-    issue: Issue;
-    super: SuperSupabase;
-  };
-  voyage: {
-    embedding: VoyageEmbedding;
-    super: SuperVoyage;
-  };
-  issueStore: IssueStore;
-  llm: LlmAdapter;
-  close(): Promise<void>;
+	supabase: {
+		comment: Comment;
+		issue: Issue;
+		super: SuperSupabase;
+	};
+	voyage: {
+		embedding: VoyageEmbedding;
+		super: SuperVoyage;
+	};
+	issueStore: IssueStore;
+	llm: LlmAdapter;
+	close(): Promise<void>;
 };
 
-export async function createAdapters(supabaseClient: SupabaseClient, voyage: VoyageAIClient, context: Context): Promise<AdapterSet> {
-  const issueStore = await createPostgresIssueStore(context.env.DATABASE_URL);
+export async function createAdapters(
+	supabaseClient: SupabaseClient,
+	voyage: VoyageAIClient,
+	context: Context,
+): Promise<AdapterSet> {
+	const issueStore = await createPostgresIssueStore(context.env.DATABASE_URL);
 
-  return {
-    supabase: {
-      comment: new Comment(supabaseClient, context),
-      issue: new Issue(supabaseClient, context),
-      super: new SuperSupabase(supabaseClient, context),
-    },
-    voyage: {
-      embedding: new VoyageEmbedding(voyage, context),
-      super: new SuperVoyage(voyage, context),
-    },
-    issueStore,
-    llm: new LlmAdapter(context),
-    close: async () => {
-      await issueStore.close();
-    },
-  };
+	return {
+		supabase: {
+			comment: new Comment(supabaseClient, context),
+			issue: new Issue(supabaseClient, context),
+			super: new SuperSupabase(supabaseClient, context),
+		},
+		voyage: {
+			embedding: new VoyageEmbedding(voyage, context),
+			super: new SuperVoyage(voyage, context),
+		},
+		issueStore,
+		llm: new LlmAdapter(context),
+		close: async () => {
+			await issueStore.close();
+		},
+	};
 }
